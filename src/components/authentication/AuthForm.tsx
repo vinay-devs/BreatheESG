@@ -11,12 +11,8 @@ import {
 import { useAppDispatch } from "../../app/hooks";
 import { setUser } from "../../app/features/user";
 import { useNavigate } from "react-router-dom";
+import { SignupFormProps } from "../../types";
 
-interface SignupFormProps {
-  email: string;
-  password: string;
-  confirmPassword?: string;
-}
 const AuthForm = ({ mode }: { mode: "signin" | "signup" }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

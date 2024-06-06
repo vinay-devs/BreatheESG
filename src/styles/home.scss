@@ -1,5 +1,37 @@
-// .ant-tabs-nav {
-//   margin: 0;
-//   background-color: black;
-//   border-bottom: 1px solid #e8e8e8;
-// }
+.sider {
+  height: 100vh;
+  padding-top: 30px;
+  .logo-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+  }
+}
+
+.avatar {
+  background-color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  .avatar-name {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+.tracker {
+  .pending-trackers {
+    border: 1px solid lightgrey;
+    box-shadow: 10px 10px 15px lightgrey;
+    max-width: fit-content;
+    padding: 10px 25px 10px 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 20;
+  }
+}

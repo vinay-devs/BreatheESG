@@ -6,13 +6,7 @@ import {
   FilterFilled,
   SearchOutlined,
 } from "@ant-design/icons";
-interface DataType {
-  key: React.Key;
-  month: string;
-  status: string;
-  completion: string;
-  bu: string;
-}
+import { DataType, TableTitleProps } from "../../../types";
 
 const data: DataType[] = [
   {
@@ -38,18 +32,12 @@ const data: DataType[] = [
   },
 ];
 
-const TableTitle = ({
-  name,
-  icon,
-}: {
-  name: string;
-  icon: React.ReactNode;
-}) => {
+const TableTitle = ({ name, icon }: TableTitleProps) => {
   return (
-    <div style={{ display: "flex", gap: 10 }}>
+    <Flex gap={10}>
       <p>{name}</p>
       {icon}
-    </div>
+    </Flex>
   );
 };
 

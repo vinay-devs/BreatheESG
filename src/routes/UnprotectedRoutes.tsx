@@ -2,18 +2,17 @@ import { getAuth } from "firebase/auth";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-const ProtectedRoute = () => {
+const UnprotectedRoutes = () => {
+  const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
-  const navigate = useNavigate();
-  console.log(user);
+
   useEffect(() => {
-    if (!user) {
-      navigate("/auth/signin");
+    if (user) {
+      navigate("/user/data-manager");
     }
   }, [user, navigate]);
-
   return <Outlet />;
 };
 
-export default ProtectedRoute;
+export default UnprotectedRoutes;

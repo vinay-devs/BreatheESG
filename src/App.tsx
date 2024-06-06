@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import UnprotectedRoutes from "./routes/UnprotectedRoutes";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,19 +25,25 @@ function App() {
             },
             {
               path: "/user/*",
-              element: <div>Hello</div>,
+              element: <div>No page available</div>,
             },
           ],
         },
       ],
     },
     {
-      path: "/signup",
-      element: <Auth mode="signup" />,
-    },
-    {
-      path: "/signin",
-      element: <Auth mode="signin" />,
+      path: "/auth",
+      element: <UnprotectedRoutes />,
+      children: [
+        {
+          path: "signup",
+          element: <Auth mode="signup" />,
+        },
+        {
+          path: "signin",
+          element: <Auth mode="signin" />,
+        },
+      ],
     },
   ]);
   return (

@@ -12,12 +12,9 @@ import Targets from "../../assets/images/sidebar/Targets.png";
 import LogoName from "../../assets/images/Logo.png";
 import Logout from "../../assets/images/sidebar/Logout.png";
 import Title from "antd/es/typography/Title";
-
-interface MenuItem {
-  icon: JSX.Element;
-  label: string;
-  route: string;
-}
+import "../../styles/home.scss";
+import { signOut } from "../../services/auth";
+import { MenuItem } from "../../types";
 
 const Sidebar = () => {
   const menuItems: MenuItem[] = [
@@ -70,27 +67,18 @@ const Sidebar = () => {
 
   const handleLogout = async (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate("/");
+    navigate("/auth/signin");
+    await signOut();
   };
   return (
     <div>
       <Sider
+        style={{ backgroundColor: "black" }}
+        className="sider"
         collapsedWidth={0}
         breakpoint="sm"
-        style={{
-          backgroundColor: "black",
-          height: "100%",
-          paddingTop: "30px",
-        }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingBottom: "50px",
-          }}
-        >
+        <div className="logo-header">
           <img src={LogoName} width={"15px"} height={"100%"} />
           <Title level={5} style={{ color: "white", margin: 0 }}>
             BREATHE ESG

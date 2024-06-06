@@ -1,14 +1,8 @@
 import { Button, ConfigProvider, Flex, Select, Tabs } from "antd";
 import DataEntry from "../../assets/images/header/DataEntry.png";
 import TrackerIcon from "../../assets/images/header/TrackerIcon.png";
+import { TabHeaderProps, TabItem } from "../../types";
 
-interface TabItem {
-  title: string;
-  icon: JSX.Element;
-}
-interface TabHeaderProps {
-  setActiveTab: (tab: string) => void;
-}
 const TabHeader = ({ setActiveTab }: TabHeaderProps) => {
   const TabItems: TabItem[] = [
     {
@@ -21,7 +15,7 @@ const TabHeader = ({ setActiveTab }: TabHeaderProps) => {
     },
   ];
   return (
-    <div style={{ paddingTop: "20px" }}>
+    <>
       <ConfigProvider
         theme={{
           components: {
@@ -52,16 +46,15 @@ const TabHeader = ({ setActiveTab }: TabHeaderProps) => {
           ></Tabs>
 
           <Flex align="center" gap={9}>
-            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <Flex align="center" gap={4}>
               <h5>For:</h5>
               <Select defaultValue={"FY 2023-24"}></Select>
-            </div>
-
+            </Flex>
             <Button type="primary">Submit For Aprroval</Button>
           </Flex>
         </Flex>
       </ConfigProvider>
-    </div>
+    </>
   );
 };
 

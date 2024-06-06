@@ -3,10 +3,13 @@ import Logo from "../../assets/images/Logo.png";
 import Title from "antd/es/typography/Title";
 import SelectIcon from "../../assets/images/header/selecticon.png";
 import BellIcon from "../../assets/images/header/bell.png";
+import { useAppSelector } from "../../app/hooks";
 const MainHeader = () => {
-  const name = "John Doe";
+  const email = useAppSelector((state) => state.email);
+  const name = email?.split("@")[0];
+
   return (
-    <div>
+    <>
       <Flex gap={25} align="center" justify="space-between">
         <Flex gap={25} align="center">
           <img src={Logo} height={20} />
@@ -25,17 +28,12 @@ const MainHeader = () => {
           <Title level={5} style={{ margin: 0, fontWeight: 400 }}>
             {name}
           </Title>
-          <div
-            style={{
-              backgroundColor: "black",
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-            }}
-          ></div>
+          <div className="avatar">
+            <div className="avatar-name">{name?.charAt(0).toUpperCase()}</div>
+          </div>
         </Flex>
       </Flex>
-    </div>
+    </>
   );
 };
 
