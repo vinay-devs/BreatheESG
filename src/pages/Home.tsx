@@ -2,7 +2,7 @@ import { Layout } from "antd";
 import Sidebar from "../components/home/Sidebar";
 import { Outlet } from "react-router-dom";
 import { Content } from "antd/es/layout/layout";
-
+import "../styles/home.scss";
 const Home = () => {
   return (
     <div>

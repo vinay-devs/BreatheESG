@@ -9,11 +9,9 @@ import Materiality from "../../assets/images/sidebar/Materiality.png";
 import Suppliers from "../../assets/images/sidebar/Suppliers.png";
 import Analytics from "../../assets/images/sidebar/Analytics.png";
 import Targets from "../../assets/images/sidebar/Targets.png";
-import LogoName from "../../assets/images/LogoName.jpg";
-import {
-  //   BarChartOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import LogoName from "../../assets/images/Logo.png";
+import Logout from "../../assets/images/sidebar/Logout.png";
+import Title from "antd/es/typography/Title";
 
 interface MenuItem {
   icon: JSX.Element;
@@ -77,6 +75,8 @@ const Sidebar = () => {
   return (
     <div>
       <Sider
+        collapsedWidth={0}
+        breakpoint="sm"
         style={{
           backgroundColor: "black",
           height: "100%",
@@ -87,10 +87,14 @@ const Sidebar = () => {
           style={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
             paddingBottom: "50px",
           }}
         >
-          <img src={LogoName} width={"150px"} />
+          <img src={LogoName} width={"15px"} height={"100%"} />
+          <Title level={5} style={{ color: "white", margin: 0 }}>
+            BREATHE ESG
+          </Title>
         </div>
         <ConfigProvider
           theme={{
@@ -114,8 +118,10 @@ const Sidebar = () => {
                 <Link to={`${item.route}`}>{item.label}</Link>
               </Menu.Item>
             ))}
-            <Menu.Item className="red" icon={<LogoutOutlined />}>
-              <p onClick={handleLogout}>Logout</p>
+            <Menu.Item className="red" icon={<img src={Logout} />}>
+              <p onClick={handleLogout} style={{ color: "red" }}>
+                Logout
+              </p>
             </Menu.Item>
           </Menu>
         </ConfigProvider>
