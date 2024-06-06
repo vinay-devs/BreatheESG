@@ -12,7 +12,7 @@ const Auth = ({ mode }: { mode: "signin" | "signup" }) => {
         justify={"space-around"}
         align={"center"}
       >
-        <AuthQuote />
+        <AuthQuote mode={mode} />
         <div className="signup-form-container">
           <img src={Earth} height={"150px"} />
           {mode === "signin" ? (

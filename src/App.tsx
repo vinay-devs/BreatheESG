@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import DataManager from "./components/home/DataManager";
@@ -44,6 +48,10 @@ function App() {
           element: <Auth mode="signin" />,
         },
       ],
+    },
+    {
+      path: "*",
+      element: <Navigate to="/auth/signin" />,
     },
   ]);
   return (

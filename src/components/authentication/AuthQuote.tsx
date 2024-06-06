@@ -1,7 +1,16 @@
 import Title from "antd/es/typography/Title";
 import LogoName from "../../assets/images/LogoName.jpg";
+import { useNavigate } from "react-router-dom";
 
-const AuthQuote = () => {
+interface AuthQuoteProps {
+  mode: "signin" | "signup";
+}
+const AuthQuote = ({ mode }: AuthQuoteProps) => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    if (mode === "signin") navigate("/auth/signup");
+    else navigate("/auth/signin");
+  };
   return (
     <div className="auth-quote">
       <Title level={5} style={{ color: "white", fontWeight: 200 }}>
@@ -17,7 +26,12 @@ const AuthQuote = () => {
         style={{ color: "white", fontWeight: 200, fontSize: "14px" }}
       >
         Sounds Interesting?{" "}
-        <span style={{ color: "green", cursor: "pointer" }}>Get in touch!</span>
+        <span
+          style={{ color: "green", cursor: "pointer" }}
+          onClick={handleOnClick}
+        >
+          {mode === "signin" ? "Sign Up" : "Sign In"}
+        </span>
       </Title>
     </div>
   );
