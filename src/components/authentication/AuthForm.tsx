@@ -1,6 +1,16 @@
-import React from "react";
 import { Form, Input, Button } from "antd";
 import Title from "antd/es/typography/Title";
+import GoogleButton from "react-google-button";
+import { GithubOutlined } from "@ant-design/icons";
+import {
+  siginWithEmailPassword,
+  signInWithGoogle,
+  signinWithGithub,
+  signupWithEmailPassword,
+} from "../../services/auth";
+import { useAppDispatch } from "../../app/hooks";
+import { setUser } from "../../app/features/user";
+import { useNavigate } from "react-router-dom";
 
 interface SignupFormProps {
   email: string;
@@ -8,10 +18,60 @@ interface SignupFormProps {
   confirmPassword?: string;
 }
 const AuthForm = ({ mode }: { mode: "signin" | "signup" }) => {
-  const onFinish = (values: SignupFormProps) => {
-    console.log("Received values:", values);
-    // Add your signup logic here
-    // console.log("Signup successful", mode);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleGoogleButton = async () => {
+    await signInWithGoogle()
+      .then(async (user) => {
+        if (!user) return;
+        dispatch(setUser(user));
+      })
+      .then(() => {
+        navigate("/user/data-manager");
+      })
+      .catch((error) => {
+        throw new Error(`Google Signin failed ${error}`);
+      });
+  };
+  const handleGithubButton = async () => {
+    await signinWithGithub()
+      .then(async (user) => {
+        if (!user) return;
+        dispatch(setUser(user));
+      })
+      .then(() => {
+        navigate("/user/data-manager");
+      })
+      .catch((error) => {
+        throw new Error(`Github Signin failed ${error}`);
+      });
+  };
+  const onFinish = async (values: SignupFormProps) => {
+    if (mode === "signup") {
+      await signupWithEmailPassword(values.email, values.password)
+        .then(async (user) => {
+          if (!user) return;
+          dispatch(setUser(user));
+        })
+        .then(() => {
+          navigate("/user/data-manager");
+        })
+        .catch((error) => {
+          throw new Error(`Signup failed ${error}`);
+        });
+    } else {
+      await siginWithEmailPassword(values.email, values.password)
+        .then(async (user) => {
+          if (!user) return;
+          dispatch(setUser(user));
+        })
+        .then(() => {
+          navigate("/user/data-manager");
+        })
+        .catch((error) => {
+          throw new Error(`Signin failed ${error}`);
+        });
+    }
   };
 
   return (
@@ -75,7 +135,31 @@ const AuthForm = ({ mode }: { mode: "signin" | "signup" }) => {
             <Input.Password placeholder="Password" />
           </Form.Item>
         )}
-
+        {mode === "signin" && (
+          <div>
+            <Form.Item>
+              <GoogleButton
+                style={{ width: "100%" }}
+                onClick={handleGoogleButton}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                onClick={handleGithubButton}
+                style={{
+                  width: "100%",
+                  padding: "20px",
+                  backgroundColor: "black",
+                  color: "white",
+                  border: 0,
+                }}
+              >
+                <GithubOutlined />
+                Sign in with GitHub
+              </Button>
+            </Form.Item>
+          </div>
+        )}
         <Form.Item>
           <Button
             type="primary"

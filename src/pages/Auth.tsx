@@ -3,7 +3,6 @@ import "../styles/signup.scss";
 import AuthQuote from "../components/authentication/AuthQuote";
 import AuthForm from "../components/authentication/AuthForm";
 import Earth from "../assets/images/Earth.png";
-// import SignInForm from "../components/authentication/SignInForm";
 
 const Auth = ({ mode }: { mode: "signin" | "signup" }) => {
   return (
