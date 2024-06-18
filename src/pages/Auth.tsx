@@ -1,4 +1,4 @@
-import { Flex } from "antd";
+import { Flex, Progress } from "antd";
 import "../styles/signup.scss";
 import AuthQuote from "../components/authentication/AuthQuote";
 import AuthForm from "../components/authentication/AuthForm";

@@ -22,7 +22,7 @@ const user = createSlice({
             state.uid = action.payload.uid;
             state.email = action.payload.email;
             state.token = action.payload.token;
-        }
+        },
     }
 })
 
